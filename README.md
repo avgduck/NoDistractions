@@ -7,6 +7,7 @@ Disables distracting stage animations and effects, detailed below.
 - Disabled shockwave and glitch effects upon hitting the ball
 - Disabled all eclipse effects (stage transformation when ball speed reaches 250)
 - Disabled heaven effect (pure white stage when ball speed reaches 1,000,000)
+- Disabled KO Camera in local games
 
 ### Stage-Specific Changes:
 
