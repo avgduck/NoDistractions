@@ -132,7 +132,7 @@ internal static class HarmonyPatches
         [HarmonyPrefix]
         private static bool Pool_Update_Prefix(BlimpScript __instance)
         {
-            if (Configs.DoPoolBlimps.Value) return true;
+            if (Configs.DoPoolBlimp.Value) return true;
             if (__instance.gameObject.name != "Blimp_Animated 2") return true;
             
             Plugin.LogGlobal.LogInfo("Disabling Pool big blimp");
