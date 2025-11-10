@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>net35</TargetFramework>
-        <Product>NoDistractions</Product>
+        <Product>NoStageEffects</Product>
         <Version>0.1.0</Version>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <LangVersion>latest</LangVersion>
@@ -11,7 +11,7 @@
             https://nuget.bepinex.dev/v3/index.json;
             https://nuget.samboy.dev/v3/index.json
         </RestoreAdditionalProjectSources>
-        <RootNamespace>NoDistractions</RootNamespace>
+        <RootNamespace>NoStageEffects</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -39,11 +39,11 @@
     </ItemGroup>
 
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-        <Copy SourceFiles="bin\Debug\net35\NoDistractions.dll" DestinationFolder="build" />
+        <Copy SourceFiles="bin\Debug\net35\NoStageEffects.dll" DestinationFolder="build" />
 
         <ItemGroup>
             <_BuildFiles Include="build\*.*" />
         </ItemGroup>
-        <Copy SourceFiles="@(_BuildFiles)" DestinationFolder="C:\Users\Owner\AppData\Roaming\r2modmanPlus-local\LethalLeagueBlaze\profiles\Dev\BepInEx\plugins\NoDistractions" />
+        <Copy SourceFiles="@(_BuildFiles)" DestinationFolder="C:\Users\Owner\AppData\Roaming\r2modmanPlus-local\LethalLeagueBlaze\profiles\Dev\BepInEx\plugins\NoStageEffects" />
     </Target>
 </Project>

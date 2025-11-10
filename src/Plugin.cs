@@ -1,7 +1,7 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 
-namespace NoDistractions;
+namespace NoStageEffects;
 
 [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
 [BepInDependency(PluginDetails.DEPENDENCY_LLBML, BepInDependency.DependencyFlags.HardDependency)]

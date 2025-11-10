@@ -2,7 +2,7 @@
 using LLScreen;
 using StageBackground;
 
-namespace NoDistractions;
+namespace NoStageEffects;
 
 public static class HarmonyPatches
 {
