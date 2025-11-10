@@ -9,9 +9,18 @@ public static class HarmonyPatches
     public static void PatchAll()
     {
         Harmony harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
+        
         harmony.PatchAll(typeof(GamePause));
-        harmony.PatchAll(typeof(BackgroundAnimations));
         harmony.PatchAll(typeof(ScreenEffects));
+
+        if (Plugin.DEBUG_FREEZEBG)
+        {
+            harmony.PatchAll(typeof(PatchFreezeBackgrounds));
+        }
+        else
+        {
+            harmony.PatchAll(typeof(PatchKeepAnimations));
+        }
     }
 
     private static class GamePause
@@ -23,30 +32,9 @@ public static class HarmonyPatches
             Plugin.Instance.IsGamePaused = LHMJELLIJDP;
         }
     }
-    
-    private static class BackgroundAnimations
-    {
-        [HarmonyPatch(typeof(BG), nameof(BG.Update))]
-        [HarmonyPrefix]
-        private static void Update_Prefix()
-        {
-            BG.timeScale = 0f;
-        }
-        
-        [HarmonyPatch(typeof(ScreenGameHud), nameof(ScreenGameHud.CShowSpeedChange), MethodType.Enumerator)]
-        [HarmonyPrefix]
-        private static void CShowSpeedChange_Prefix()
-        {
-            BG.timeScale = Plugin.Instance.GetBGTimeScale();
-        }
-        
-        [HarmonyPatch(typeof(ScreenGameHud), nameof(ScreenGameHud.CShowSpeedChange), MethodType.Enumerator)]
-        [HarmonyPostfix]
-        private static void CShowSpeedChange_Postfix()
-        {
-            BG.timeScale = 0f;
-        }
 
+    private static class ScreenEffects
+    {
         [HarmonyPatch(typeof(BG), nameof(BG.SetState))]
         [HarmonyPrefix]
         private static bool SetState_Prefix(BGState state)
@@ -58,14 +46,13 @@ public static class HarmonyPatches
 
             return true;
         }
-    }
-
-    private static class ScreenEffects
-    {
+        
         [HarmonyPatch(typeof(PostFXCircle), nameof(PostFXCircle.CStartWave), MethodType.Enumerator)]
         [HarmonyPrefix]
         private static void CStartWave_Prefix()
         {
+            if (!Plugin.DEBUG_FREEZEBG) return;
+            
             BG.timeScale = Plugin.Instance.GetBGTimeScale();
         }
         
@@ -73,6 +60,8 @@ public static class HarmonyPatches
         [HarmonyPostfix]
         private static void CStartWave_Postfix()
         {
+            if (!Plugin.DEBUG_FREEZEBG) return;
+            
             BG.timeScale = 0f;
         }
     }

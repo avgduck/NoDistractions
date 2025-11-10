@@ -4,10 +4,11 @@ using BepInEx.Logging;
 namespace NoStageEffects;
 
 [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
-[BepInDependency(PluginDetails.DEPENDENCY_LLBML, BepInDependency.DependencyFlags.HardDependency)]
+[BepInDependency(PluginDetails.DEPENDENCY_LLBML, BepInDependency.DependencyFlags.HardDependency)] 
 [BepInDependency(PluginDetails.DEPENDENCY_MODMENU, BepInDependency.DependencyFlags.SoftDependency)]
 public class Plugin : BaseUnityPlugin
 {
+    internal const bool DEBUG_FREEZEBG = false;
     public static Plugin Instance { get; private set; }
     internal static ManualLogSource LogGlobal { get; private set; }
     internal bool IsGamePaused { get; set; } = false;
