@@ -87,6 +87,7 @@ internal static class HarmonyPatches
         {
             if (Configs.DoElevatorMove.Value || setState == ElevatorScript.ElevatorState.FALLING) return;
             
+            Plugin.LogGlobal.LogInfo("Stopping Elevator movement");
             setState = ElevatorScript.ElevatorState.STOPPED;
         }
 
@@ -100,6 +101,7 @@ internal static class HarmonyPatches
             SubwayIntro = false;
             __instance.SetState(TrainScript.TrainAnimationType.TRAIN_STATION_BIG_OUT);
             SubwayIntro = true;
+            Plugin.LogGlobal.LogInfo("Disabling Subway train movement");
         }
         [HarmonyPatch(typeof(TrainScript), nameof(TrainScript.SetState))]
         [HarmonyPrefix]
@@ -114,6 +116,7 @@ internal static class HarmonyPatches
         [HarmonyPrefix]
         private static bool Streets_StartDroneSequence_Prefix()
         {
+            if (!Configs.DoStreetsDrones.Value) Plugin.LogGlobal.LogInfo("Disabling Streets drones");
             return Configs.DoStreetsDrones.Value;
         }
         
@@ -121,6 +124,7 @@ internal static class HarmonyPatches
         [HarmonyPostfix]
         private static void Pool_Awake_Postfix(BlimpScript __instance)
         {
+            if (!Configs.DoPoolBlimp.Value) Plugin.LogGlobal.LogInfo("Disabling Pool blimp");
             __instance.gameObject.SetActive(Configs.DoPoolBlimp.Value);
         }
         
@@ -130,6 +134,7 @@ internal static class HarmonyPatches
         {
             if (Configs.DoFactoryBuckets.Value) return;
             
+            Plugin.LogGlobal.LogInfo("Disabling Factory buckets");
             __instance.animbucket1["ironBucketTrack"].enabled = false;
             __instance.animbucket2["ironBucketTrack"].enabled = false;
             __instance.animbucket3["ironBucketTrack"].enabled = false;
@@ -140,6 +145,7 @@ internal static class HarmonyPatches
         [HarmonyPostfix]
         private static void Stadium_Awake_Postfix(Stadium_ScreenCamController __instance)
         {
+            if (!Configs.DoStadiumScreen.Value) Plugin.LogGlobal.LogInfo("Disabling Stadium screen");
             __instance._cam.enabled = Configs.DoStadiumScreen.Value;
         }
         
@@ -147,6 +153,7 @@ internal static class HarmonyPatches
         [HarmonyPrefix]
         private static bool Sewers_StartAnim_Prefix()
         {
+            if (!Configs.DoSewersSubmarine.Value) Plugin.LogGlobal.LogInfo("Disabling Sewers submarine");
             return Configs.DoSewersSubmarine.Value;
         }
     }
