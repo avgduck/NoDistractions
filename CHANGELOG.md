@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.2.0] - 2025-11-10
+
+### Added
+
+- Add effect toggles with config or ModMenu ([`68b21e9`](https://github.com/avgduck/NoStageEffects/commit/68b21e9febbb5ad234aa3b1cf82beb11a5784ccb))
+- Add logging for disabled stage animations ([`4fa35dd`](https://github.com/avgduck/NoStageEffects/commit/4fa35ddf11778036fd4a3ba1a2f7ee4c77c88f47))
+
+### Changed
+
+- Change Stadium screen to be black when disabled ([`1a5c020`](https://github.com/avgduck/NoStageEffects/commit/68b21e9febbb5ad234aa3b1cf82beb11a5784ccb))
+
 ## [1.1.0] - 2025-11-10
 
 ### Added
@@ -16,6 +27,7 @@
 
 _Initial release_
 
+[1.2.0]: https://github.com/avgduck/NoStageEffects/releases/tag/v1.2.0
 [1.1.0]: https://github.com/avgduck/NoStageEffects/releases/tag/v1.1.0
 [1.0.1]: https://github.com/avgduck/NoStageEffects/releases/tag/v1.0.1
 [1.0.0]: https://github.com/avgduck/NoStageEffects/releases/tag/v1.0.0

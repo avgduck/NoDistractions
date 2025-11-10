@@ -1,6 +1,6 @@
 ## [NoStageEffects](https://thunderstore.io/c/lethal-league-blaze/p/avg_duck/NoStageEffects/)
 
-Disables distracting stage animations and effects, detailed below.
+Tournament-ready mod to disable distracting stage animations and effects.
 
 ### General Changes:
 
@@ -13,10 +13,12 @@ Disables distracting stage animations and effects, detailed below.
 
 - The elevator on **New Rise District (Elevator)** no longer leaves the 1st floor
 - The train on **The Subways (Subway)** now continues straight without turning or stopping
-- The screen on **Paradise Field (Stadium)** no longer shows the players or ball
-- The large blimp on **Abandoned Pool (Pool)** no longer appears
+- The screen on **Paradise Field (Stadium)** is now turned off
+- The blimps on **Abandoned Pool (Pool)** no longer appear
 - The iron buckets on **Workbot Factory (Factory)** no longer appear
-- The cars and drones on **Central Streets (Streets)** no longer appear
+- The drones on **Central Streets (Streets)** no longer appear
 - The submarine on **The Sewers (Sewers)** no longer appears
+
+_Note: Effects can be toggled back on in the config file or with [MrGentle's ModMenu](https://thunderstore.io/c/lethal-league-blaze/p/MrGentle/ModMenu/), but this mod is intended to provide a drop-in tournament-standard visual experience. For more extensive customization, check out [StageTweakerReborn](https://thunderstore.io/c/lethal-league-blaze/p/wallacebean/StageTweakerReborn/) and [EffectsSettings](https://thunderstore.io/c/lethal-league-blaze/p/Axolotl/EffectsSettings/)._
 
 [![Common Changelog](https://common-changelog.org/badge.svg)](https://common-changelog.org)
