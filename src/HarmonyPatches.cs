@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using StageBackground;
+using UnityEngine;
 
 namespace NoStageEffects;
 
@@ -85,10 +86,24 @@ internal static class HarmonyPatches
         [HarmonyPrefix]
         private static void Elevator_SetState_Prefix(ref ElevatorScript.ElevatorState setState)
         {
-            if (Configs.DoElevatorMove.Value || setState == ElevatorScript.ElevatorState.FALLING) return;
+            if (Configs.DoElevatorMove.Value) return;
+            if (setState == ElevatorScript.ElevatorState.FALLING
+                || setState == ElevatorScript.ElevatorState.OVERSHOOT_DOWN
+                || setState == ElevatorScript.ElevatorState.WAITING_OPEN_DOORS) return;
             
             Plugin.LogGlobal.LogInfo("Stopping Elevator movement");
             setState = ElevatorScript.ElevatorState.STOPPED;
+        }
+
+        [HarmonyPatch(typeof(ElevatorScript), nameof(ElevatorScript.StopFalling))]
+        [HarmonyPostfix]
+        private static void Elevator_StopFalling_Postfix(ElevatorScript __instance)
+        {
+            if (Configs.DoElevatorMove.Value) return;
+
+            __instance.currentFloor = 0;
+            __instance.targetFloor = 2;
+            __instance.worldTf.position = Vector3.up * __instance.floorPos[__instance.targetFloor];
         }
 
         private static bool SubwayIntro = false;
