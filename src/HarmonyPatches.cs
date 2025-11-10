@@ -1,4 +1,8 @@
 ﻿using HarmonyLib;
+using LLBML.Math;
+using LLBML.Settings;
+using LLBML.States;
+using LLHandlers;
 using StageBackground;
 using UnityEngine;
 
@@ -64,19 +68,7 @@ internal static class HarmonyPatches
         [HarmonyPrefix]
         private static bool ActivateKOCamMode_Prefix()
         {
-            if (Configs.DoKOCamera.Value) return true;
-            
-            Plugin.LogGlobal.LogInfo("Blocking attempt to activate KO Camera");
-            return false;
-        }
-        [HarmonyPatch(typeof(World), nameof(World.DeactivateKOCamMode))]
-        [HarmonyPrefix]
-        private static bool DeactivateKOCamMode_Prefix()
-        {
-            if (Configs.DoKOCamera.Value) return true;
-            
-            Plugin.LogGlobal.LogWarning("KO Camera mode deactivated (this shouldn't be possible)");
-            return false;
+            return Configs.DoKOCamera.Value;
         }
     }
     
