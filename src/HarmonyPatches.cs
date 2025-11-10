@@ -39,6 +39,21 @@ public static class HarmonyPatches
         {
             return false;
         }
+        
+        [HarmonyPatch(typeof(World), nameof(World.ActivateKOCamMode))]
+        [HarmonyPrefix]
+        private static bool ActivateKOCamMode_Prefix()
+        {
+            Plugin.LogGlobal.LogInfo("Blocking attempt to activate KO Camera");
+            return false;
+        }
+        [HarmonyPatch(typeof(World), nameof(World.DeactivateKOCamMode))]
+        [HarmonyPrefix]
+        private static bool DeactivateKOCamMode_Prefix()
+        {
+            Plugin.LogGlobal.LogWarning("KO Camera mode deactivated (this shouldn't be possible)");
+            return false;
+        }
     }
     
     public static class StagePatches
