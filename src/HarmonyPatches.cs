@@ -136,11 +136,15 @@ internal static class HarmonyPatches
         }
         
         [HarmonyPatch(typeof(BlimpScript), nameof(BlimpScript.Update))]
-        [HarmonyPostfix]
-        private static void Pool_Awake_Postfix(BlimpScript __instance)
+        [HarmonyPrefix]
+        private static bool Pool_Update_Prefix(BlimpScript __instance)
         {
-            if (!Configs.DoPoolBlimps.Value) Plugin.LogGlobal.LogInfo("Disabling Pool blimps");
-            __instance.gameObject.SetActive(Configs.DoPoolBlimps.Value);
+            if (Configs.DoPoolBlimps.Value) return true;
+            if (__instance.gameObject.name != "Blimp_Animated 2") return true;
+            
+            Plugin.LogGlobal.LogInfo("Disabling Pool big blimp");
+            __instance.gameObject.SetActive(false);
+            return false;
         }
         
         [HarmonyPatch(typeof(AssemblyScript), nameof(AssemblyScript.Start))]
