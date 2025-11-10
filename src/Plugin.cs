@@ -8,10 +8,8 @@ namespace NoStageEffects;
 [BepInDependency(PluginDetails.DEPENDENCY_MODMENU, BepInDependency.DependencyFlags.SoftDependency)]
 public class Plugin : BaseUnityPlugin
 {
-    internal const bool DEBUG_FREEZEBG = false;
     public static Plugin Instance { get; private set; }
     internal static ManualLogSource LogGlobal { get; private set; }
-    internal bool IsGamePaused { get; set; } = false;
 
     private void Awake()
     {
@@ -25,10 +23,5 @@ public class Plugin : BaseUnityPlugin
     private void Start()
     {
         LLBML.Utils.ModDependenciesUtils.RegisterToModMenu(this.Info, PluginDetails.MODMENU_TEXT);
-    }
-
-    public float GetBGTimeScale()
-    {
-        return IsGamePaused ? 0f : 1f;
     }
 }

@@ -5,7 +5,7 @@ using StageBackground;
 
 namespace NoStageEffects;
 
-public class PatchKeepAnimations
+public class StagePatches
 {
     [HarmonyPatch(typeof(ElevatorScript), nameof(ElevatorScript.SetState))]
     [HarmonyPrefix]

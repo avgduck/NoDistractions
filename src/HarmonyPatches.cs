@@ -10,27 +10,8 @@ public static class HarmonyPatches
     {
         Harmony harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
         
-        harmony.PatchAll(typeof(GamePause));
         harmony.PatchAll(typeof(ScreenEffects));
-
-        if (Plugin.DEBUG_FREEZEBG)
-        {
-            harmony.PatchAll(typeof(PatchFreezeBackgrounds));
-        }
-        else
-        {
-            harmony.PatchAll(typeof(PatchKeepAnimations));
-        }
-    }
-
-    private static class GamePause
-    {
-        [HarmonyPatch(typeof(OGONAGCFDPK), nameof(OGONAGCFDPK.PFDNCNGCEDB))]
-        [HarmonyPostfix]
-        private static void SetTimePause_Postfix(bool LHMJELLIJDP)
-        {
-            Plugin.Instance.IsGamePaused = LHMJELLIJDP;
-        }
+        harmony.PatchAll(typeof(StagePatches));
     }
 
     private static class ScreenEffects
@@ -45,24 +26,6 @@ public static class HarmonyPatches
             }
 
             return true;
-        }
-        
-        [HarmonyPatch(typeof(PostFXCircle), nameof(PostFXCircle.CStartWave), MethodType.Enumerator)]
-        [HarmonyPrefix]
-        private static void CStartWave_Prefix()
-        {
-            if (!Plugin.DEBUG_FREEZEBG) return;
-            
-            BG.timeScale = Plugin.Instance.GetBGTimeScale();
-        }
-        
-        [HarmonyPatch(typeof(PostFXCircle), nameof(PostFXCircle.CStartWave), MethodType.Enumerator)]
-        [HarmonyPostfix]
-        private static void CStartWave_Postfix()
-        {
-            if (!Plugin.DEBUG_FREEZEBG) return;
-            
-            BG.timeScale = 0f;
         }
     }
 }
