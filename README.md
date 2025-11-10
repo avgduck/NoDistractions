@@ -1,4 +1,4 @@
-﻿## [NoStageEffects](https://thunderstore.io/c/lethal-league-blaze/p/avg_duck/NoStageEffects/)
+## [NoStageEffects](https://thunderstore.io/c/lethal-league-blaze/p/avg_duck/NoStageEffects/)
 
 Disables distracting stage animations and effects, detailed below.
 
