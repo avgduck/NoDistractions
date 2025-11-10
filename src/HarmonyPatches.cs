@@ -85,7 +85,7 @@ internal static class HarmonyPatches
         [HarmonyPrefix]
         private static void Elevator_SetState_Prefix(ref ElevatorScript.ElevatorState setState)
         {
-            if (Configs.DoElevatorMove.Value) return;
+            if (Configs.DoElevatorMove.Value || setState == ElevatorScript.ElevatorState.FALLING) return;
             
             setState = ElevatorScript.ElevatorState.STOPPED;
         }
