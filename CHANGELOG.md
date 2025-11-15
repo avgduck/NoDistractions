@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.3.0] - 2025-11-15
+
+### Added
+
+- Add disabling stage intro cutscenes in local games ([`03c7518`](https://github.com/avgduck/NoStageEffects/commit/03c75189ee232cc9f7269b630412e86fec359b2e))
+
 ## [1.2.1] - 2025-11-10
 
 ### Removed
@@ -39,6 +45,7 @@
 
 _Initial release_
 
+[1.3.0]: https://github.com/avgduck/NoStageEffects/releases/tag/v1.3.0
 [1.2.1]: https://github.com/avgduck/NoStageEffects/releases/tag/v1.2.1
 [1.2.0]: https://github.com/avgduck/NoStageEffects/releases/tag/v1.2.0
 [1.1.0]: https://github.com/avgduck/NoStageEffects/releases/tag/v1.1.0

@@ -8,6 +8,7 @@ Tournament-ready mod to disable distracting stage animations and effects.
 - Disabled all eclipse effects (stage transformation when ball speed reaches 250)
 - Disabled heaven effect (pure white stage when ball speed reaches 1,000,000)
 - Disabled KO Camera in local games
+- Disabled stage intro cutscene in local games
 
 ### Stage-Specific Changes:
 
