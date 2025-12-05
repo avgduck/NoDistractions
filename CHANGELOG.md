@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.4.1] - 2025-12-05
+
+### Fixed
+
+- Fix blimps on Pool still appearing when disabled ([#1](https://github.com/avgduck/NoStageEffects/issues/1))
+
 ## [1.4.0] - 2025-12-03
 
 ### Added
@@ -51,6 +57,7 @@
 
 _Initial release_
 
+[1.4.1]: https://github.com/avgduck/NoStageEffects/releases/tag/v1.4.1
 [1.4.0]: https://github.com/avgduck/NoStageEffects/releases/tag/v1.4.0
 [1.3.0]: https://github.com/avgduck/NoStageEffects/releases/tag/v1.3.0
 [1.2.1]: https://github.com/avgduck/NoStageEffects/releases/tag/v1.2.1
