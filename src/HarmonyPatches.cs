@@ -180,17 +180,62 @@ internal static class HarmonyPatches
             if (!Configs.DoStreetsDrones.Value) Plugin.LogGlobal.LogInfo("Disabling Streets drones");
             return Configs.DoStreetsDrones.Value;
         }
-        
-        [HarmonyPatch(typeof(BlimpScript), nameof(BlimpScript.Update))]
+
+        // manual override of animation clip matching due to incongruence between the intended clip and the actual clip first played
+        private static bool blimp1Intro = false;
+        private static bool blimp2Intro = false;
+        [HarmonyPatch(typeof(BlimpScript), nameof(BlimpScript.Awake))]
         [HarmonyPrefix]
-        private static bool Pool_Update_Prefix(BlimpScript __instance)
+        private static void Pool_Awake_Prefix(BlimpScript __instance)
         {
-            if (Configs.DoPoolBlimp.Value) return true;
-            if (__instance.gameObject.name != "Blimp_Animated 2") return true;
+            if (Configs.DoPoolBlimp.Value) return;
+
+            if (__instance.gameObject.name == "Blimp_Animated 1") blimp1Intro = true;
+            else if (__instance.gameObject.name == "Blimp_Animated 2") blimp2Intro = true;
+        }
+        [HarmonyPatch(typeof(BlimpScript), nameof(BlimpScript.Update))]
+        [HarmonyPostfix]
+        private static void Pool_Update_Postfix(BlimpScript __instance)
+        {
+            if (Configs.DoPoolBlimp.Value) return;
+            if (!__instance.animationComponent.isPlaying) return;
+
+            Transform airship = __instance.transform.Find("root/airship");
+            if (airship == null)
+            {
+                Plugin.LogGlobal.LogWarning($"Could not find child 'root/airship' of pool blimp: {__instance.name}");
+                return;
+            }
             
-            Plugin.LogGlobal.LogInfo("Disabling Pool big blimp");
-            __instance.gameObject.SetActive(false);
-            return false;
+            switch (__instance.name) 
+            {
+                case "Blimp_Animated 1":
+                {
+                    string clipName = __instance.animationClips[__instance.currentAnimIndex].name;
+                    bool isBadClip = (clipName is "path2" or "path5") && !blimp1Intro;
+                    
+                    airship.gameObject.SetActive(!isBadClip);
+                    if (blimp1Intro && __instance.currentAnimIndex != 0) blimp1Intro = false;
+                    break;
+                }
+                case "Blimp_Animated 2":
+                {
+                    string clipName = __instance.animationClips[__instance.currentAnimIndex].name;
+                    bool isBadClip = (clipName is "path2" or "path5") || blimp2Intro;
+                    
+                    airship.gameObject.SetActive(!isBadClip);
+                    if (blimp2Intro && __instance.currentAnimIndex != 0) blimp2Intro = false;
+                    break;
+                }
+                case "Blimp_Animated 3":
+                {
+                    string clipName = __instance.animationClips[__instance.currentAnimIndex].name;
+                    bool isBadClip = clipName is "path2" or "path5";
+                    
+                    airship.gameObject.SetActive(!isBadClip);
+                    break;
+                }
+            }
         }
         
         [HarmonyPatch(typeof(AssemblyScript), nameof(AssemblyScript.Start))]
