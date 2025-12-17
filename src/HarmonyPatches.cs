@@ -47,13 +47,13 @@ internal static class HarmonyPatches
             
             if ((state == BGState.ECLIPSE || stageReset) && !Configs.DoEclipseEffect.Value)
             {
-                Plugin.LogGlobal.LogInfo("Blocking attempt to activate BG state ECLIPSE");
+                //Plugin.LogGlobal.LogInfo("Blocking attempt to activate BG state ECLIPSE");
                 state = BGState.NORMAL;
                 stageReset = false;
             }
             else if (state == BGState.HEAVEN && !Configs.DoHeavenEffect.Value)
             {
-                Plugin.LogGlobal.LogInfo("Blocking attempt to activate BG state HEAVEN");
+                //Plugin.LogGlobal.LogInfo("Blocking attempt to activate BG state HEAVEN");
                 state = BGState.NORMAL;
             }
         }
