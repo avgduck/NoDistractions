@@ -160,7 +160,8 @@ internal static class HarmonyPatches
             if (Configs.DoSubwayMove.Value) return;
             
             SubwayIntro = false;
-            __instance.SetState(TrainScript.TrainAnimationType.TRAIN_STATION_BIG_OUT);
+            //__instance.SetState(TrainScript.TrainAnimationType.TRAIN_STATION_BIG_OUT);
+            __instance.SetState(TrainScript.TrainAnimationType.TRAIN_STATION_SMALL_IN);
             SubwayIntro = true;
             Plugin.LogGlobal.LogInfo("Disabling Subway train movement");
         }
@@ -170,7 +171,8 @@ internal static class HarmonyPatches
         {
             if (!SubwayIntro || Configs.DoSubwayMove.Value) return;
             
-            state = TrainScript.TrainAnimationType.TRAIN_STRAIGHT;
+            //state = TrainScript.TrainAnimationType.TRAIN_STRAIGHT;
+            state = TrainScript.TrainAnimationType.TRAIN_STATION_SMALL_IDLE;
         }
         
         [HarmonyPatch(typeof(DroneScript), nameof(DroneScript.StartDroneSequence))]
