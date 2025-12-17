@@ -190,6 +190,7 @@ internal static class HarmonyPatches
         {
             if (Configs.DoPoolBlimp.Value) return;
 
+            Plugin.LogGlobal.LogInfo("Disabling Pool blimp animations path2 and path5");
             if (__instance.gameObject.name == "Blimp_Animated 1") blimp1Intro = true;
             else if (__instance.gameObject.name == "Blimp_Animated 2") blimp2Intro = true;
         }
@@ -244,7 +245,7 @@ internal static class HarmonyPatches
         {
             if (Configs.DoFactoryBuckets.Value) return;
             
-            Plugin.LogGlobal.LogInfo("Disabling Factory buckets");
+            Plugin.LogGlobal.LogInfo("Disabling Factory bucket animations");
             __instance.animbucket1["ironBucketTrack"].enabled = false;
             __instance.animbucket2["ironBucketTrack"].enabled = false;
             __instance.animbucket3["ironBucketTrack"].enabled = false;
@@ -266,7 +267,6 @@ internal static class HarmonyPatches
         {
             if (Configs.DoStadiumScreen.Value || pEclipseActive) return;
             
-            Plugin.LogGlobal.LogInfo("Disabling Stadium screen");
             pEclipseActive = true;
         }
         
